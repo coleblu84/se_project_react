@@ -37,7 +37,7 @@ function App() {
         setWeatherData(filterData);
       })
       .catch(console.error);
-  });
+  }, []);
 
   return (
     <div className="page">
