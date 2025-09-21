@@ -9,7 +9,7 @@ function ModalWithForm({
   handleCloseClick,
 }) {
   return (
-    <div className={`isOpen={activeModal=== "add-garment"}`}>
+    <div className={`modal ${activeModal ? " modal_opened" : ""}`}>
       <div className="modal__content">
         <h2 className="modal__title">{title}</h2>
         <button
