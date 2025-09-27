@@ -111,7 +111,7 @@
 .modal__sumbit {
   margin-top: 32px;
   padding: 8px 16px;
-  background: #0000004d;
+  background: #000000;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -121,4 +121,14 @@
   font-weight: bold;
   border-radius: 4px;
   width: fit-content;
+}
+
+.modal__submit:hover {
+  background-color: #00000099;
+  cursor: pointer;
+}
+
+.modal__submit:disabled {
+  background-color: #0000004d;
+  cursor: not-allowed;
 }

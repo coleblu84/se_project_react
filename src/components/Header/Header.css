@@ -2,6 +2,13 @@
   display: flex;
   align-items: center;
   padding: 32px 0 28px;
+  justify-content: space-between;
+}
+
+.header__container{
+  display: flex;
+  align-items: center;
+  gap:16px;
 }
 
 .header__logo {
@@ -19,7 +26,7 @@
 }
 
 .header__add-cloths-btn {
-  margin: 0 20px 0 auto;
+  margin: 0;
   font-family: "Cabinet Grotesk", sans-serif;
   border: none;
   font-size: 20px;

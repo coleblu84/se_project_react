@@ -7,8 +7,7 @@ Please note this project is still a work in progress. it will be an ongoing proj
 
 **ToDo's**
 - I will be looking to ensure this is a responsive design.
-- Ensure that the Temperature Unit toggle swtich between Fahrenheit and Celsius.
-- Working on a modal for avatar and name in the header.
+
 
 ## 🧰 Tech Stack
 - [React](https://react.dev/)
