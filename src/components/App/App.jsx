@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -6,9 +8,11 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddIteamModal";
 import ItemModal from "../ItemModal/ItemModal";
+import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import { defaultClothingItems } from "../../utils/constants";
+import { getItems, postItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -43,7 +47,13 @@ function App() {
       link: inputValues.link,
       weather: inputValues.weatherType,
     };
-    setClothingItems({ ...clothingItems, newCardData });
+
+    // postItem(newCardData)
+    // .then((data)=>{
+    //   setClothingItems([...clothingItems, data]);
+    // })
+    // .catch((error) => console.error("Failed to add item:", error));
+    setClothingItems([...clothingItems, newCardData]);
     closeActiveModal();
   };
 
@@ -60,6 +70,15 @@ function App() {
       .catch((error) => console.error("Failed to fetch weather data:", error));
   }, []);
 
+  useEffect(() => {
+    getItems()
+    .then((data)=>{
+      setClothingItems(data);
+    })
+    .catch((error) => console.error("Failed to load item:", error));
+    setClothingItems(defaultClothingItems);
+  }, []);
+
   return (
     <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -67,11 +86,20 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main
-            weatherData={weatherData}
-            handleCardClick={handleCardClick}
-            clothingItems={clothingItems}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+
           <Footer />
         </div>
         <AddItemModal
