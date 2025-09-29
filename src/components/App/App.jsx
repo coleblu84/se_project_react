@@ -72,10 +72,10 @@ function App() {
 
   useEffect(() => {
     getItems()
-    .then((data)=>{
-      setClothingItems(data);
-    })
-    .catch((error) => console.error("Failed to load item:", error));
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch((error) => console.error("Failed to load item:", error));
     setClothingItems(defaultClothingItems);
   }, []);
 
@@ -92,12 +92,15 @@ function App() {
               element={
                 <Main
                   weatherData={weatherData}
-                  handleCardClick={handleCardClick}
+                  onCardClick={handleCardClick}
                   clothingItems={clothingItems}
                 />
               }
             />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={<Profile onCardClick={handleCardClick} />}
+            />
           </Routes>
 
           <Footer />

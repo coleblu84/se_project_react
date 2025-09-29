@@ -5,10 +5,10 @@
   justify-content: space-between;
 }
 
-.header__container{
+.header__container {
   display: flex;
   align-items: center;
-  gap:16px;
+  gap: 16px;
 }
 
 .header__logo {
@@ -45,4 +45,14 @@
 .header__username {
   margin: 0;
   font-family: "Cabinet Grotesk", sans-serif;
+}
+
+.header__link {
+  display: flex;
+  text-decoration: none;
+  background: none;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
 }
