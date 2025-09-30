@@ -11,7 +11,7 @@
   max-width: 300px;
 }
 
-.profile__clothing {
+.profile__clothing-item {
   flex: 1 1 auto;
   min-width: 0;
 }

@@ -18,7 +18,7 @@ function ModalWithForm({
         </button>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          <button type="submit" className="modal__sumbit">
+          <button type="sumbit" className="modal__submit">
             {buttonText}
           </button>
         </form>

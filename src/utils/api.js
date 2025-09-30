@@ -18,4 +18,10 @@ function postItem(item) {
   );
 }
 
-export { getItems, postItem };
+function deleteItem(id) {
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+  }).then(handleResponse);
+}
+
+export { getItems, postItem, deleteItem };
