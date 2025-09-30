@@ -44,7 +44,7 @@ function App() {
   const onAddItem = (inputValues) => {
     const newCardData = {
       name: inputValues.name,
-      link: inputValues.link,
+      imageUrl: inputValues.link,
       weather: inputValues.weatherType,
     };
 
@@ -92,14 +92,20 @@ function App() {
               element={
                 <Main
                   weatherData={weatherData}
-                  onCardClick={handleCardClick}
+                  handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
                 />
               }
             />
             <Route
               path="/profile"
-              element={<Profile onCardClick={handleCardClick} />}
+              element={
+                <Profile
+                  clothingItems={clothingItems}
+                  handleCardClick={handleCardClick}
+                  onAddItem={onAddItem}
+                />
+              }
             />
           </Routes>
 

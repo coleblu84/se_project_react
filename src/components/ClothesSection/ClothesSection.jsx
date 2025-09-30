@@ -6,10 +6,7 @@ function ClothesSection({ clothingItems = [], handleCardClick }) {
     <div className="clothes-section">
       <div className="clothes-section__header">
         <p className="clothes-section__title">Your Item</p>
-        <button
-          className="clothes-section__add-btn"
-          type="button"
-        >
+        <button className="clothes-section__add-btn" type="button">
           + Add New
         </button>
       </div>
