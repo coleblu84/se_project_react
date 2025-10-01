@@ -12,7 +12,7 @@ import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import { defaultClothingItems } from "../../utils/constants";
-import { getItems, postItem } from "../../utils/api";
+import { getItems, postItem, deleteItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -26,7 +26,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -48,18 +48,23 @@ function App() {
       weather: inputValues.weatherType,
     };
 
-    // postItem(newCardData)
-    // .then((data)=>{
-    //   setClothingItems([...clothingItems, data]);
-    // })
-    // .catch((error) => console.error("Failed to add item:", error));
-    setClothingItems([...clothingItems, newCardData]);
-    closeActiveModal();
+    postItem(newCardData)
+      .then((data) => {
+        setClothingItems([...clothingItems, data]);
+      })
+      .catch((error) => console.error("Failed to add item:", error));
   };
 
-  const closeActiveModal = () => {
+  const handleDeleteItem = (card) => {
+  setClothingItems((prevItems) =>
+    prevItems.filter((item) => item.id !== card.id && item._id !== card._id)
+  );
+  closeActiveModal();
+};
+
+  function closeActiveModal() {
     setActiveModal("");
-  };
+  }
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -76,7 +81,6 @@ function App() {
         setClothingItems(data);
       })
       .catch((error) => console.error("Failed to load item:", error));
-    setClothingItems(defaultClothingItems);
   }, []);
 
   return (
@@ -121,6 +125,7 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           handleCloseClick={closeActiveModal}
+          handleDeleteItem={handleDeleteItem}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>

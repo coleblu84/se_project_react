@@ -7,11 +7,11 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
     link: "",
     weatherType: "",
   };
-  const { values, handleChange } = useForm(defaultValues);
+  const { values, handleChange, handleReset } = useForm(defaultValues);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onAddItem(values);
+    onAddItem(values, handleReset);
   }
 
   return (

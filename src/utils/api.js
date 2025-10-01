@@ -1,5 +1,12 @@
 const baseUrl = "http://localhost:3001";
 
+function handleResponse(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Error: ${res.status}`);
+}
+
 function getItems() {
   return fetch(`${baseUrl}/items`).then((res) =>
     res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
