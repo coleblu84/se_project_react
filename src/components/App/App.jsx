@@ -6,12 +6,11 @@ import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import AddItemModal from "../AddItemModal/AddIteamModal";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
-import { defaultClothingItems } from "../../utils/constants";
 import { getItems, postItem, deleteItem } from "../../utils/api";
 
 function App() {
@@ -41,7 +40,7 @@ function App() {
     setActiveModal("add-garment");
   };
 
-  const onAddItem = (inputValues) => {
+  const onAddItem = (inputValues, handleReset) => {
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.link,
@@ -51,16 +50,24 @@ function App() {
     postItem(newCardData)
       .then((data) => {
         setClothingItems([...clothingItems, data]);
+        handleReset();
+        closeActiveModal();
       })
       .catch((error) => console.error("Failed to add item:", error));
   };
 
   const handleDeleteItem = (card) => {
-  setClothingItems((prevItems) =>
-    prevItems.filter((item) => item.id !== card.id && item._id !== card._id)
-  );
-  closeActiveModal();
-};
+    deleteItem(card._id || card.id)
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter(
+            (item) => item.id !== card.id || item._id !== card._id
+          )
+        );
+        closeActiveModal();
+      })
+      .catch((error) => console.error("Failed to delete item:", error));
+  };
 
   function closeActiveModal() {
     setActiveModal("");

@@ -8,9 +8,7 @@ function handleResponse(res) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+  return fetch(`${baseUrl}/items`).then(handleResponse);
 }
 
 function postItem(item) {
@@ -20,9 +18,7 @@ function postItem(item) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(item),
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
-  );
+  }).then(handleResponse);
 }
 
 function deleteItem(id) {
