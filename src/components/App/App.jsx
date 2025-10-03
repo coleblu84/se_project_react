@@ -49,7 +49,7 @@ function App() {
 
     postItem(newCardData)
       .then((data) => {
-        setClothingItems([...clothingItems, data]);
+        setClothingItems([data, ...clothingItems]);
         handleReset();
         closeActiveModal();
       })
