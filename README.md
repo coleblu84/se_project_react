@@ -21,7 +21,6 @@ Check out the design on Figma if you’d like to see how my progress is coming a
 ## 📁 File Structure
 ```text
 se_project_react
-
 ├─ node_modules
 ├─ public
 │  └─ vite.svg
@@ -48,6 +47,8 @@ se_project_react
 │  │  ├─ ClothesSection
 │  │  │  ├─ ClothesSection.css
 │  │  │  └─ ClothesSection.jsx
+│  │  ├─ EditProfileModal
+│  │  │  └─ EditProfileModal.jsx
 │  │  ├─ Footer
 │  │  │  ├─ Footer.css
 │  │  │  └─ Footer.jsx
@@ -60,6 +61,8 @@ se_project_react
 │  │  ├─ ItemModal
 │  │  │  ├─ ItemModal.css
 │  │  │  └─ ItemModal.jsx
+│  │  ├─ LoginModal
+│  │  │  └─ LoginModal.jsx
 │  │  ├─ Main
 │  │  │  ├─ Main.css
 │  │  │  └─ Main.jsx
@@ -69,6 +72,10 @@ se_project_react
 │  │  ├─ Profile
 │  │  │  ├─ Profile.css
 │  │  │  └─ Profile.jsx
+│  │  ├─ ProtectedRoute
+│  │  │  └─ ProtectedRoute.jsx
+│  │  ├─ RegisterModal
+│  │  │  └─ RegisterModal.jsx
 │  │  ├─ SideBar
 │  │  │  ├─ SideBar.css
 │  │  │  └─ SideBar.jsx
@@ -79,24 +86,23 @@ se_project_react
 │  │     ├─ WeatherCard.css
 │  │     └─ WeatherCard.jsx
 │  ├─ contexts
-│  │  └─ CurrentTemperatureUnitContext.jsx
+│  │     ├─ CurrentTemperatureUnitContext.jsx
+│  │     └─ CurrentUserContext.js
 │  ├─ hooks
 │  │  └─ useForm.js
 │  ├─ utils
 │  │  ├─ api.js
+│  │  ├─ auth.js
 │  │  ├─ constants.js
 │  │  └─ weatherApi.js
 │  ├─ vendor
 │  ├─ index.css
 │  └─ main.jsx
 ├─ .gitignore
-├─ db.json
 ├─ eslint.config.js
 ├─ index.html
 ├─ package-lock.json
 ├─ package.json
 ├─ README.md
 └─ vite.config.js
-
-
 ```
