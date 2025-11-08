@@ -13,14 +13,6 @@ Here is the link for the back end of the WTWR project. Go check it out!!
 - [OpenWeatherMap API](https://openweathermap.org/api)
 - [Vite](https://vite.dev/)
 
-**Back end tech stack**
-- [Express.js](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
-- [Mongoose](https://mongoosejs.com/)
-- [Postman](https://www.postman.com/)
-- [GitHub Actions](https://github.com/features/actions)
-
-
 ## 🎨 Design
 Check out the design on Figma if you’d like to see how my progress is coming along.
 
