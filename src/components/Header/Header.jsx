@@ -33,15 +33,15 @@ function Header({
               {currentUser.avatar ? (
                 <img
                   src={currentUser.avatar}
-                  alt={currentUser.name}
+                  alt={currentUser.name || "User"}
                   className="header__avatar"
                 />
               ) : (
                 <div className="header__avatar-placeholder">
-                  {currentUser.name[0].toUpperCase()}
+                  {(currentUser?.name?.[0] || "?").toUpperCase()}
                 </div>
               )}
-              <span className="header__username">{currentUser.name}</span>
+              <span className="header__username">{currentUser?.name || "User"}</span>
             </div>
             <button onClick={handleLogout}>Logout</button>
           </nav>

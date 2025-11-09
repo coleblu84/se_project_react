@@ -1,12 +1,9 @@
-export const getWeather = ({ latitude, longitude }, APIkey) => {
-  return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}
-`).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
+import { checkResponse } from "./request.js";
+
+export const getWeather = ({ latitude, longitude }, apiKey) => {
+  return fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`
+  ).then(checkResponse);
 };
 
 export const filterWeatherData = (data) => {
@@ -22,16 +19,11 @@ export const filterWeatherData = (data) => {
   return result;
 };
 
-const isDay = ({ sunrise, sunset }, now) => {
-  return sunrise * 1000 < now && now < sunset * 1000;
-};
+const isDay = ({ sunrise, sunset }, now) =>
+  sunrise * 1000 < now && now < sunset * 1000;
 
 const getWeatherType = (temperature) => {
-  if (temperature >= 70) {
-    return "hot";
-  } else if (temperature >= 60 && temperature < 70) {
-    return "warm";
-  } else {
-    return "cold";
-  }
+  if (temperature >= 70) return "hot";
+  if (temperature >= 60 && temperature < 70) return "warm";
+  return "cold";
 };

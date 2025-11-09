@@ -30,7 +30,7 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser, currentUser }) {
         Name
         <input
           type="text"
-          id="name"
+          id="edit-name"
           name="name"
           className="modal__input"
           value={name}
@@ -43,7 +43,7 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser, currentUser }) {
         Avatar URL
         <input
           type="url"
-          id="avatar"
+          id="edit-avatar"
           name="avatar"
           className="modal__input"
           value={avatar}

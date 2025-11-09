@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -11,10 +12,21 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
 
   const { values, handleChange, handleReset } = useForm(defaultValues);
 
-  const handleSubmit = (evt) => {
+  useEffect(() => {
+    if (isOpen) {
+      handleReset();
+    }
+  }, [isOpen, handleReset]);
+
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    onRegister(values);
-    handleReset();
+
+    try {
+      await onRegister(values);
+      handleReset();
+    } catch (err) {
+      console.error("Registration failed:", err);
+    }
   };
 
   return (
@@ -25,13 +37,13 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
       activeModal={isOpen}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="register-email" className="modal__label">
         Email
         <input
           type="email"
           name="email"
           className="modal__input"
-          id="email"
+          id="register-email"
           placeholder="Enter your email"
           required
           value={values.email}
@@ -39,13 +51,13 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
         />
       </label>
 
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="register-password" className="modal__label">
         Password
         <input
           type="password"
           name="password"
           className="modal__input"
-          id="password"
+          id="register-password"
           placeholder="Create a password"
           required
           value={values.password}
@@ -53,13 +65,13 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
         />
       </label>
 
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name
         <input
           type="text"
           name="name"
           className="modal__input"
-          id="name"
+          id="register-name"
           placeholder="Your name"
           required
           value={values.name}
@@ -67,13 +79,13 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
         />
       </label>
 
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="register-avatar" className="modal__label">
         Avatar URL
         <input
           type="url"
           name="avatar"
           className="modal__input"
-          id="avatar"
+          id="register-avatar"
           placeholder="Link to your avatar"
           required
           value={values.avatar}

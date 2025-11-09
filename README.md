@@ -94,6 +94,7 @@ se_project_react
 │  │  ├─ api.js
 │  │  ├─ auth.js
 │  │  ├─ constants.js
+│  │  ├─ request.js
 │  │  └─ weatherApi.js
 │  ├─ vendor
 │  ├─ index.css

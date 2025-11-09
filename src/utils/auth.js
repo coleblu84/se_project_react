@@ -1,30 +1,21 @@
-const baseUrl = "http://localhost:3001";
+import { checkResponse } from "./request.js";
 
-function handleResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-}
+const baseUrl = "http://localhost:3001";
 
 export function register({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
 export function authorize({ email, password }) {
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
 export function getUserData(token) {
@@ -34,5 +25,5 @@ export function getUserData(token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
