@@ -11,8 +11,22 @@
   gap: 16px;
 }
 
+.header__container .toggle-switch {
+  margin-left: 12px;
+}
+
 .header__logo {
   margin-right: 24px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease;
+}
+
+.header__logo:hover {
+  opacity: 0.8;
 }
 
 .header__date-and-location {
@@ -23,6 +37,12 @@
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .header__add-cloths-btn {
@@ -47,6 +67,26 @@
   font-family: "Cabinet Grotesk", sans-serif;
 }
 
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.header__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-family: "Cabinet Grotesk", sans-serif;
+  color: #555;
+}
+
 .header__link {
   display: flex;
   text-decoration: none;
@@ -55,4 +95,9 @@
   border: 0;
   cursor: pointer;
   color: inherit;
+}
+
+.header__link:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
 }
