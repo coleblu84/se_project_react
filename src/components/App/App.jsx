@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
-import { coordinates, APIkey } from "../../utils/constants";
+import { coordinates, apiKey } from "../../utils/constants";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -43,7 +43,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // --- Handlers ---
+
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
@@ -59,7 +59,7 @@ function App() {
   const handleEditProfileClick = () => setActiveModal("edit-profile");
   const closeActiveModal = () => setActiveModal("");
 
-  // --- Item operations ---
+
   const onAddItem = (inputValues, handleReset) => {
     const newCardData = {
       name: inputValues.name,
@@ -89,7 +89,7 @@ function App() {
       .catch((error) => console.error("Failed to delete item:", error));
   };
 
-  // --- Auth operations ---
+
   const handleRegister = ({ name, avatar, email, password }) => {
     register({ name, avatar, email, password })
       .then(() => handleLogin({ email, password }))
@@ -124,7 +124,7 @@ function App() {
       .catch((err) => console.error("Failed to update profile:", err));
   };
 
-  // --- Likes / Dislikes ---
+
   const handleCardLike = (card) => {
     if (!currentUser) return;
 
@@ -153,7 +153,6 @@ function App() {
     }
   };
 
-  // --- Initial token check ---
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -166,9 +165,9 @@ function App() {
     }
   }, []);
 
-  // --- Fetch weather & items ---
+ 
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    getWeather(coordinates, apiKey)
       .then((data) => setWeatherData(filterWeatherData(data)))
       .catch((err) => console.error("Failed to fetch weather:", err));
   }, []);
@@ -216,7 +215,7 @@ function App() {
                       handleCardClick={handleCardClick}
                       onAddItem={onAddItem}
                       onEditProfileClick={handleEditProfileClick}
-                      onLogout={handleLogout} // <-- pass logout here
+                      onLogout={handleLogout} 
                     />
                   </ProtectedRoute>
                 }
@@ -227,7 +226,7 @@ function App() {
             <Footer />
           </div>
 
-          {/* Modals */}
+         
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             onClose={closeActiveModal}

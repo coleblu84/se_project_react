@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -10,21 +9,13 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
 
   const { values, handleChange, handleReset } = useForm(defaultValues);
 
-  // Reset form when modal opens
-  useEffect(() => {
-    if (isOpen) {
-      handleReset();
-    }
-  }, [isOpen, handleReset]);
-
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
       await onLogin(values);
-      handleReset(); // Reset only after successful login
+      handleReset();
     } catch (err) {
       console.error("Login failed:", err);
-      // Do not reset form if login fails
     }
   };
 

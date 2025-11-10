@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -11,12 +10,6 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
   };
 
   const { values, handleChange, handleReset } = useForm(defaultValues);
-
-  useEffect(() => {
-    if (isOpen) {
-      handleReset();
-    }
-  }, [isOpen, handleReset]);
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
