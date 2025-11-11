@@ -6,7 +6,7 @@ export function register({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, avatar, email, password }),
+    body: JSON.stringify({ name, avatarUrl: avatar, email, password }),
   }).then(checkResponse);
 }
 

@@ -43,7 +43,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
@@ -58,7 +57,6 @@ function App() {
   const handleLoginClick = () => setActiveModal("login");
   const handleEditProfileClick = () => setActiveModal("edit-profile");
   const closeActiveModal = () => setActiveModal("");
-
 
   const onAddItem = (inputValues, handleReset) => {
     const newCardData = {
@@ -88,7 +86,6 @@ function App() {
       })
       .catch((error) => console.error("Failed to delete item:", error));
   };
-
 
   const handleRegister = ({ name, avatar, email, password }) => {
     register({ name, avatar, email, password })
@@ -124,33 +121,33 @@ function App() {
       .catch((err) => console.error("Failed to update profile:", err));
   };
 
-
   const handleCardLike = (card) => {
     if (!currentUser) return;
 
     const isLiked = card.likes?.some((id) => id === currentUser._id);
 
-    if (!isLiked) {
-      addCardLike(card._id)
-        .then((updatedCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) =>
-              item._id === updatedCard._id ? updatedCard : item
-            )
-          );
-        })
-        .catch((err) => console.error(err));
-    } else {
-      removeCardLike(card._id)
-        .then((updatedCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) =>
-              item._id === updatedCard._id ? updatedCard : item
-            )
-          );
-        })
-        .catch((err) => console.error(err));
-    }
+    const updatedCard = {
+      ...card,
+      likes: isLiked
+        ? card.likes.filter((id) => id !== currentUser._id)
+        : [...(card.likes || []), currentUser._id],
+    };
+
+    setClothingItems((cards) =>
+      cards.map((item) => (item._id === card._id ? updatedCard : item))
+    );
+
+    const likeRequest = isLiked
+      ? removeCardLike(card._id)
+      : addCardLike(card._id);
+
+    likeRequest.catch((err) => {
+      console.error("Failed to update like:", err);
+
+      setClothingItems((cards) =>
+        cards.map((item) => (item._id === card._id ? card : item))
+      );
+    });
   };
 
   useEffect(() => {
@@ -165,7 +162,6 @@ function App() {
     }
   }, []);
 
- 
   useEffect(() => {
     getWeather(coordinates, apiKey)
       .then((data) => setWeatherData(filterWeatherData(data)))
@@ -215,7 +211,7 @@ function App() {
                       handleCardClick={handleCardClick}
                       onAddItem={onAddItem}
                       onEditProfileClick={handleEditProfileClick}
-                      onLogout={handleLogout} 
+                      onLogout={handleLogout}
                     />
                   </ProtectedRoute>
                 }
@@ -226,7 +222,6 @@ function App() {
             <Footer />
           </div>
 
-         
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             onClose={closeActiveModal}
