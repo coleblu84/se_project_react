@@ -5,7 +5,6 @@ import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 
-
 const today = new Date();
 const currentDate = today.toLocaleDateString("en-US", {
   month: "long",
@@ -31,10 +30,9 @@ function Header({
           <Link to="/" className="header__logo">
             <img src={logo} alt="WTWR Logo" className="header__logo-image" />
           </Link>
-
-          <div className="header__date-and-location">
-            {currentDate},{weatherData?.name || "Location"}
-          </div>
+          <p className="header__date-and-location">
+            {currentDate}, {weatherData?.city || "New York"}
+          </p>
         </div>
 
         <div className="header__right">
@@ -43,17 +41,31 @@ function Header({
             handleToggleSwitchChange={handleToggleSwitchChange}
           />
 
-          {isLoggedIn && currentUser ? (
+          {!isLoggedIn ? (
             <nav className="header__nav">
-              <Link to="/profile" className="header__link">
-                Profile
-              </Link>
-              <button onClick={handleAddClick}>Add Item</button>
+              <button
+                onClick={handleRegisterClick}
+                className="header__auth-btn"
+              >
+                Sign Up
+              </button>
+              <button onClick={handleLoginClick} className="header__auth-btn">
+                Log In
+              </button>
+            </nav>
+          ) : (
+            <nav className="header__nav">
+              <button
+                onClick={handleAddClick}
+                className="header__add-cloths-btn"
+              >
+                Add Item
+              </button>
               <div className="header__user-info">
-                {currentUser.avatar ? (
+                {currentUser?.avatar ? (
                   <img
                     src={currentUser.avatar}
-                    alt={currentUser.name || "User"}
+                    alt={currentUser.name || "User Avatar"}
                     className="header__avatar"
                   />
                 ) : (
@@ -65,12 +77,9 @@ function Header({
                   {currentUser?.name || "User"}
                 </span>
               </div>
-              <button onClick={handleLogout}>Logout</button>
-            </nav>
-          ) : (
-            <nav className="header__nav">
-              <button onClick={handleRegisterClick}>Sign Up</button>
-              <button onClick={handleLoginClick}>Sign In</button>
+              <button onClick={handleLogout} className="header__auth-btn">
+                Logout
+              </button>
             </nav>
           )}
         </div>

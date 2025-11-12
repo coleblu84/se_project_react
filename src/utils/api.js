@@ -1,24 +1,14 @@
 const baseUrl = "http://localhost:3001";
+import { checkResponse } from "./request";
 
-function handleResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-}
-
-// Helper: get token from localStorage
 function getToken() {
   return localStorage.getItem("jwt");
 }
 
-/* ---------- PUBLIC ROUTE ---------- */
-// No token needed for this one
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(handleResponse);
+  return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
-/* ---------- PROTECTED ROUTES ---------- */
 function postItem(item) {
   const token = getToken();
   return fetch(`${baseUrl}/items`, {
@@ -28,7 +18,7 @@ function postItem(item) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(item),
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
 function deleteItem(id) {
@@ -38,10 +28,9 @@ function deleteItem(id) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
-/* ---------- CARD LIKES ---------- */
 function addCardLike(cardId) {
   const token = getToken();
   return fetch(`${baseUrl}/items/${cardId}/likes`, {
@@ -50,7 +39,7 @@ function addCardLike(cardId) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
 function removeCardLike(cardId) {
@@ -61,10 +50,9 @@ function removeCardLike(cardId) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
-/* ---------- USER INFO ---------- */
 function getUserData() {
   const token = getToken();
   return fetch(`${baseUrl}/users/me`, {
@@ -73,7 +61,7 @@ function getUserData() {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
 function updateUserData({ name, avatar }) {
@@ -85,7 +73,7 @@ function updateUserData({ name, avatar }) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar }),
-  }).then(handleResponse);
+  }).then(checkResponse);
 }
 
 export {
@@ -95,5 +83,5 @@ export {
   getUserData,
   updateUserData,
   addCardLike,
-  removeCardLike
+  removeCardLike,
 };

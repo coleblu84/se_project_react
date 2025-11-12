@@ -1,7 +1,7 @@
 import { useForm } from "../../hooks/useForm";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ isOpen, onClose, onLogin }) => {
+const LoginModal = ({ isOpen, onClose, onLogin, onRegisterClick }) => {
   const defaultValues = {
     email: "",
     password: "",
@@ -9,8 +9,11 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
 
   const { values, handleChange, handleReset } = useForm(defaultValues);
 
+  const isFormValid = values.email.trim() && values.password.trim();
+
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+    if (!isFormValid) return;
     try {
       await onLogin(values);
       handleReset();
@@ -22,7 +25,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
   return (
     <ModalWithForm
       title="Log In"
-      buttonText="Login"
+      buttonText="Log In"
       onClose={onClose}
       activeModal={isOpen}
       onSubmit={handleSubmit}
@@ -54,6 +57,19 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
           onChange={handleChange}
         />
       </label>
+
+      <div className="modal__actions">
+        <button type="submit" className="modal__submit" disabled={!isFormValid}>
+          Log In
+        </button>
+        <button
+          type="button"
+          className="modal__secondary-button"
+          onClick={onRegisterClick}
+        >
+          or Sign Up
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

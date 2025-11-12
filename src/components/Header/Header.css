@@ -1,37 +1,41 @@
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 20px 40px;
-  background-color: #fff; 
-  border-bottom: 1px solid #e5e5e5;
+  padding: 32px 0 28px;
+  background-color: #f3f3f3;
   font-family: "Cabinet Grotesk", sans-serif;
+  color: #000;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 40px;
 }
 
 .header__left {
   display: flex;
   align-items: center;
-  gap: 24px;
-}
-
-.header__logo {
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 28px;
-  color: #000;
-  text-decoration: none;
+  gap: 12px;
 }
 
 .header__logo-image {
+  width: 89px;
   height: 40px;
-  width: auto;
+  object-fit: contain;
+  display: block;
+  margin-top: 7px;
 }
 
 .header__date-and-location {
   font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  color: #000;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
 }
 
 .header__right {
@@ -40,50 +44,58 @@
   gap: 16px;
 }
 
-.header__add-cloths-btn {
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #000;
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
-.header__user-container {
+.header__auth-btn,
+.header__add-cloths-btn {
+  background: none;
+  border: none;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+  cursor: pointer;
+  padding: 0;
+}
+
+.header__auth-btn:hover,
+.header__add-cloths-btn:hover {
+  text-decoration: underline;
+}
+
+.header__user-info {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.header__username {
-  font-weight: 500;
-  font-size: 16px;
-  color: #000;
-}
-
-.header__nav button,
-.header__link {
-  font-weight: 700;
-  font-size: 16px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #000;
-  text-decoration: none;
-  padding: 0;
-}
-
-.header__nav button:hover,
-.header__link:hover,
-.header__add-cloths-btn:hover {
-  text-decoration: underline;
-}
-
-
-.header__profile-image {
-  width: 32px;
-  height: 32px;
+.header__avatar {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
+}
+
+.header__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.header__username {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
 }

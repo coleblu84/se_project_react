@@ -43,9 +43,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleToggleSwitchChange = () => {
+  const handleToggleSwitchChange = () =>
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
-  };
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -78,9 +77,7 @@ function App() {
     deleteItem(card._id || card.id)
       .then(() => {
         setClothingItems((prevItems) =>
-          prevItems.filter(
-            (item) => item.id !== card.id && item._id !== card._id
-          )
+          prevItems.filter((item) => item._id !== card._id)
         );
         closeActiveModal();
       })
@@ -125,7 +122,6 @@ function App() {
     if (!currentUser) return;
 
     const isLiked = card.likes?.some((id) => id === currentUser._id);
-
     const updatedCard = {
       ...card,
       likes: isLiked
@@ -143,7 +139,6 @@ function App() {
 
     likeRequest.catch((err) => {
       console.error("Failed to update like:", err);
-
       setClothingItems((cards) =>
         cards.map((item) => (item._id === card._id ? card : item))
       );
@@ -209,9 +204,10 @@ function App() {
                     <Profile
                       clothingItems={clothingItems}
                       handleCardClick={handleCardClick}
+                      onCardLike={handleCardLike}
                       onAddItem={onAddItem}
                       onEditProfileClick={handleEditProfileClick}
-                      onLogout={handleLogout}
+                      onAddClick={handleAddClick}
                     />
                   </ProtectedRoute>
                 }
@@ -239,12 +235,14 @@ function App() {
             isOpen={activeModal === "register"}
             onClose={closeActiveModal}
             onRegister={handleRegister}
+            onLoginClick={handleLoginClick}
           />
 
           <LoginModal
             isOpen={activeModal === "login"}
             onClose={closeActiveModal}
             onLogin={handleLogin}
+            onRegisterClick={handleRegisterClick}
           />
 
           <EditProfileModal

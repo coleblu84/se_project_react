@@ -5,6 +5,7 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 function Profile({
   clothingItems,
   handleCardClick,
+  onCardLike,
   onAddClick,
   onEditProfileClick,
   onLogout,
@@ -19,6 +20,7 @@ function Profile({
           clothingItems={clothingItems}
           handleCardClick={handleCardClick}
           onAddClick={onAddClick}
+          onCardLike={onCardLike}
         />
       </section>
     </div>

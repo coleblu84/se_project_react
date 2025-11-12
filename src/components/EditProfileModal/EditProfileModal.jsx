@@ -5,7 +5,7 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser, currentUser }) {
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 
-  // Fill form with current user data when modal opens
+  
   useEffect(() => {
     if (currentUser && isOpen) {
       setName(currentUser.name || "");
@@ -26,7 +26,7 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser, currentUser }) {
       activeModal={isOpen}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="edit-name" className="modal__label">
         Name
         <input
           type="text"
@@ -39,7 +39,7 @@ function EditProfileModal({ isOpen, onClose, onUpdateUser, currentUser }) {
         />
       </label>
 
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="edit-avatar" className="modal__label">
         Avatar URL
         <input
           type="url"
