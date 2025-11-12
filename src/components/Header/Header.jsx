@@ -26,21 +26,25 @@ function Header({
   return (
     <header className="header">
       <div className="header__container">
+        {/* Left Side: Logo + Date/Location */}
         <div className="header__left">
           <Link to="/" className="header__logo">
             <img src={logo} alt="WTWR Logo" className="header__logo-image" />
           </Link>
+
           <p className="header__date-and-location">
             {currentDate}, {weatherData?.city || "New York"}
           </p>
         </div>
 
+        {/* Right Side: Toggle + Auth/Nav */}
         <div className="header__right">
           <ToggleSwitch
             currentTemperatureUnit={currentTemperatureUnit}
             handleToggleSwitchChange={handleToggleSwitchChange}
           />
 
+          {/* If NOT logged in */}
           {!isLoggedIn ? (
             <nav className="header__nav">
               <button
@@ -49,11 +53,13 @@ function Header({
               >
                 Sign Up
               </button>
+
               <button onClick={handleLoginClick} className="header__auth-btn">
                 Log In
               </button>
             </nav>
           ) : (
+            /* If logged in */
             <nav className="header__nav">
               <button
                 onClick={handleAddClick}
@@ -61,7 +67,9 @@ function Header({
               >
                 Add Item
               </button>
-              <div className="header__user-info">
+
+              {/* REQUIRED: Link to /profile */}
+              <Link to="/profile" className="header__user-info">
                 {currentUser?.avatar ? (
                   <img
                     src={currentUser.avatar}
@@ -73,10 +81,12 @@ function Header({
                     {(currentUser?.name?.[0] || "?").toUpperCase()}
                   </div>
                 )}
+
                 <span className="header__username">
                   {currentUser?.name || "User"}
                 </span>
-              </div>
+              </Link>
+
               <button onClick={handleLogout} className="header__auth-btn">
                 Logout
               </button>
