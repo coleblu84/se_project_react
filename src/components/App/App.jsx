@@ -250,6 +250,7 @@ function App() {
             onClose={closeActiveModal}
             onUpdateUser={handleUpdateUser}
             currentUser={currentUser}
+            onLogout={handleLogout}
           />
         </div>
       </CurrentTemperatureUnitContext.Provider>

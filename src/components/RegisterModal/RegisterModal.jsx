@@ -35,6 +35,8 @@ const RegisterModal = ({ isOpen, onClose, onRegister, onLoginClick }) => {
       onClose={onClose}
       activeModal={isOpen}
       onSubmit={handleSubmit}
+      secondaryButtonAction={onLoginClick}
+      secondaryButtonText="or Log In"
     >
       <label htmlFor="register-email" className="modal__label">
         Email
@@ -91,19 +93,6 @@ const RegisterModal = ({ isOpen, onClose, onRegister, onLoginClick }) => {
           onChange={handleChange}
         />
       </label>
-
-      <div className="modal__actions">
-        <button type="submit" className="modal__submit" disabled={!isFormValid}>
-          Sign Up
-        </button>
-        <button
-          type="button"
-          className="modal__secondary-button"
-          onClick={onLoginClick}
-        >
-          or Log In
-        </button>
-      </div>
     </ModalWithForm>
   );
 };

@@ -1,7 +1,16 @@
 import closeBtn from "../../assets/closebtn.png";
 import "./ModalWithForm.css";
 
-function ModalWithForm({ children, title, activeModal, onClose, onSubmit }) {
+function ModalWithForm({
+  children,
+  title,
+  activeModal,
+  onClose,
+  onSubmit,
+  buttonText,
+  secondaryButtonText,
+  secondaryButtonAction,
+}) {
   return (
     <div className={`modal ${activeModal ? "modal_opened" : ""}`}>
       <div className="modal__content">
@@ -12,6 +21,20 @@ function ModalWithForm({ children, title, activeModal, onClose, onSubmit }) {
 
         <form onSubmit={onSubmit} className="modal__form">
           {children}
+          <div className="modal__actions">
+            <button type="submit" className="modal__submit">
+              {buttonText}
+            </button>
+            {secondaryButtonText && secondaryButtonAction && (
+              <button
+                type="button"
+                className="modal__secondary-button"
+                onClick={secondaryButtonAction}
+              >
+                {secondaryButtonText}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

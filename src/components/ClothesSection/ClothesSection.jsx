@@ -7,7 +7,7 @@ function ClothesSection({
   clothingItems = [],
   handleCardClick,
   onAddClick,
-  onCardLIke,
+  onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
