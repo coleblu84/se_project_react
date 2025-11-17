@@ -1,6 +1,9 @@
 import { checkResponse } from "./request.js";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwr.app.jumpingcrab.com"
+    : "http://localhost:3001";
 
 export function register({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
