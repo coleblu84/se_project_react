@@ -35,8 +35,17 @@ se_project_react
 │  │  │  ├─ snow.png
 │  │  │  └─ storm.png
 │  │  ├─ night
+│  │  │  ├─ clear.png
+│  │  │  ├─ cloudy.png
+│  │  │  ├─ default.png
+│  │  │  ├─ fog.png
+│  │  │  ├─ rain.png
+│  │  │  ├─ snow.png
+│  │  │  └─ storm.png
 │  │  ├─ avatar.png
 │  │  ├─ closebtn.png
+│  │  ├─ heart-liked.svg
+│  │  ├─ heart.svg
 │  │  └─ logo.svg
 │  ├─ components
 │  │  ├─ AddItemModal
@@ -97,6 +106,10 @@ se_project_react
 │  │  ├─ request.js
 │  │  └─ weatherApi.js
 │  ├─ vendor
+│  │  ├─ Fonts
+│  │     └─ list of all fonts
+│  │  ├─ fonts.css
+│  │  └─ nomalize.css
 │  ├─ index.css
 │  └─ main.jsx
 ├─ .gitignore
